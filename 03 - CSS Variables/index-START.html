@@ -21,7 +21,21 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+  :root {
+      --base: #ffc600;
+      --spacing: 10px;
+      --blur: 10px;
+    }
 
+    img {
+      padding: var(--spacing);
+      background: var(--base);
+      filter: blur(var(--blur));
+    }
+
+    .hl {
+      color: var(--base);
+    }
     /*
       misc styles, nothing to do with CSS variables
     */
@@ -45,6 +59,33 @@
   </style>
 
   <script>
+   
+/*
+      Why not use arrow functions when using EVENTLISTENERS ?
+
+The --this-- scope with arrow functions is inherited from the execution context. An arrow function does not bind this at all, so its value will be looked up in the call stack
+
+It’s important to clarify this concept because arrow functions behave very differently compared to regular functions.
+
+DOM Event listeners set this to be the target element, and if you rely on this in an event handler, *** a regular function is necessary ***:
+
+( From -->    https://flaviocopes.com/javascript-arrow-functions/ )
+*/
+const inputs = document.querySelectorAll('.controls input');
+
+const handleUpdate = function() {
+  // 'sizing' dataset is used to get the 'px' part of the CSS 
+   const suffix = this.dataset.sizing || ''; // to return nothing if undefined!
+
+   // each input element has a variable set for instance:      name="blur"
+   console.log(this.name);
+
+   // update CSS variable on document
+   document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+ };
+
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
   </script>
 
 </body>
