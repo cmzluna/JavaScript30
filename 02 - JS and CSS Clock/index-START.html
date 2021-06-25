@@ -15,7 +15,10 @@
       </div>
     </div>
 
-
+<!--
+  Random image generator:
+   https://unsplash.it/1500/1000?blur=5
+-->
   <style>
     html {
       background: #018DED url(https://unsplash.it/1500/1000?image=881&blur=5);
@@ -35,9 +38,9 @@
     }
 
     .clock {
-      width: 30rem;
-      height: 30rem;
-      border: 20px solid white;
+      width: 40vh;
+      height: 40vh;
+      border: 4vh solid white;
       border-radius: 50%;
       margin: 50px auto;
       position: relative;
@@ -58,16 +61,30 @@
 
     .hand {
       width: 50%;
-      height: 6px;
+      height: 2vh;
       background: black;
       position: absolute;
       top: 50%;
+      transform-origin: 100%;
+      transform: rotate(90deg);
+      transition: all .5s;
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
     }
 
   </style>
+<!---  
+transform-origin: 
+ sets the origin for an element's transformations.
+ Cool to make 'pivoting' effects
 
+  https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin
+-->
   <script>
+    function setDate() {
+      console.log('Hi')
+    }
 
+    setInterval(setDate, 1000);
 
   </script>
 </body>
